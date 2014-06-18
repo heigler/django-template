@@ -1,0 +1,15 @@
+## global
+python3.3
+pip3
+libjpeg-dev
+zlib1g-dev
+libmysqlclient-dev
+nodejs
+npm
+
+## pip
+virtualenv
+virtualenvwrapper
+
+## npm
+bower

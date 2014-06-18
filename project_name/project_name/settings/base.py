@@ -17,7 +17,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
@@ -43,6 +43,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
 )
 
 SECRET_KEY = r"{{ secret_key }}"
@@ -123,6 +124,13 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 INSTALLED_APPS += (
     'south',
+    'djangobower',
     'floppyforms',
 )
+
+# third part settings
 SOUTH_TESTS_MIGRATE = False
+BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'components'))
+BOWER_INSTALLED_APPS = (
+    'foundation',
+)
