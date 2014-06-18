@@ -123,5 +123,6 @@ WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 INSTALLED_APPS += (
     'south',
+    'floppyforms',
 )
 SOUTH_TESTS_MIGRATE = False
