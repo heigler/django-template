@@ -1,14 +1,25 @@
 django-template
 ===============
 
-Features
---------
+Main Features
+-------------
 
 #. django-compressor
 
 #. zurb-foundation using Sass
 
 #. South
+
+Another Packages
+----------------
+
+#. bpython
+
+#. django-braces
+
+#. django-floppyforms
+
+#. requests
 
 Everything configured and ready to play.
 
