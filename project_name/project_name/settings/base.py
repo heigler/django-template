@@ -137,5 +137,7 @@ BOWER_INSTALLED_APPS = (
     'foundation',
 )
 COMPRESS_PRECOMPILERS = (
-    ('text/x-sass', 'sass --compass "{infile}" "{outfile}"'),
+    ('text/x-sass',
+     ('sass -I "%s/bower_components/foundation/scss" "{infile}" '
+      '"{outfile}"') % BOWER_COMPONENTS_ROOT),
 )
