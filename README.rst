@@ -6,7 +6,7 @@ Features
 
 #. django-compressor
 
-#. zorb-foundation using Sass
+#. zurb-foundation using Sass
 
 #. South
 
