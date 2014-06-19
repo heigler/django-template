@@ -19,6 +19,10 @@ Another Packages
 
 #. django-floppyforms
 
+#. coverage
+
+#. django-debug-toolbar
+
 #. requests
 
 Everything configured and ready to play.
