@@ -44,6 +44,7 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder',
+    'compressor.finders.CompressorFinder',
 )
 
 SECRET_KEY = r"{{ secret_key }}"
@@ -126,6 +127,7 @@ INSTALLED_APPS += (
     'south',
     'djangobower',
     'floppyforms',
+    'compressor',
 )
 
 # third part settings
@@ -133,4 +135,7 @@ SOUTH_TESTS_MIGRATE = False
 BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'components'))
 BOWER_INSTALLED_APPS = (
     'foundation',
+)
+COMPRESS_PRECOMPILERS = (
+    ('text/x-sass', 'sass --compass "{infile}" "{outfile}"'),
 )
