@@ -1,6 +1,6 @@
 ## global
-python3.3
-pip3
+python2.7
+pip
 libjpeg-dev
 zlib1g-dev
 libmysqlclient-dev

@@ -1,6 +1,9 @@
 django-template
 ===============
 
+Tested on Django 1.6 and Python 2.7
+
+
 Main Features
 -------------
 
@@ -10,7 +13,7 @@ Main Features
 
 #. South
 
-Another Packages
+Extra Packages
 ----------------
 
 #. bpython
