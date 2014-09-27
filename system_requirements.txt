@@ -6,6 +6,7 @@ zlib1g-dev
 libmysqlclient-dev
 nodejs
 npm
+ruby-sass
 
 ## pip
 virtualenv

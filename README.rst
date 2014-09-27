@@ -1,7 +1,7 @@
 django-template
 ===============
 
-Tested on Django 1.6 and Python 2.7
+Tested on Django 1.7 and Python 2.7
 
 
 Main Features
@@ -11,7 +11,6 @@ Main Features
 
 #. zurb-foundation using Sass
 
-#. South
 
 Extra Packages
 ----------------
@@ -48,8 +47,6 @@ Install all python packages (in virtualenv)::
 
 
 Do some extra setup using manage.py::
-
-    $ ./manage.py syncdb
 
     $ ./manage.py migrate
 

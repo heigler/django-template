@@ -124,14 +124,12 @@ LOGGING = {
 WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 INSTALLED_APPS += (
-    'south',
     'djangobower',
     'floppyforms',
     'compressor',
 )
 
 # third part settings
-SOUTH_TESTS_MIGRATE = False
 BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'components'))
 BOWER_INSTALLED_APPS = (
     'foundation',
