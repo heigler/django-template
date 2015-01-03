@@ -6,14 +6,70 @@ SITE_ROOT = dirname(DJANGO_ROOT)
 SITE_NAME = basename(DJANGO_ROOT)
 path.append(DJANGO_ROOT)
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+SECRET_KEY = r"{{ secret_key }}"
 
-ADMINS = (
-    ('Your Name', 'your_email@example.com'),
+DEBUG = True
+TEMPLATE_DEBUG = True
+
+ALLOWED_HOSTS = ['*']
+
+DJANGO_APPS = (
+    'grappelli',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
 )
 
-MANAGERS = ADMINS
+PLUGGABLE_APPS = (
+    'djangobower',
+    'compressor',
+    'easy_thumbnails',
+    'crispy_forms',
+)
+
+LOCAL_APPS = (
+)
+
+INSTALLED_APPS = DJANGO_APPS + PLUGGABLE_APPS + LOCAL_APPS
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+    'compressor.finders.CompressorFinder',
+)
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+TEMPLATE_DIRS = (
+    normpath(join(SITE_ROOT, 'templates')),
+)
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+)
+ROOT_URLCONF = '%s.urls' % SITE_NAME
+
+WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
 
 DATABASES = {
     'default': {
@@ -26,9 +82,9 @@ DATABASES = {
     }
 }
 
-TIME_ZONE = 'America/Sao_Paulo'
+
 LANGUAGE_CODE = 'pt-BR'
-SITE_ID = 1
+TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -40,102 +96,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     normpath(join(SITE_ROOT, 'static')),
 )
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-    'compressor.finders.CompressorFinder',
-)
 
-SECRET_KEY = r"{{ secret_key }}"
-ALLOWED_HOSTS = []
-FIXTURE_DIRS = (
-    normpath(join(SITE_ROOT, 'fixtures')),
-)
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-)
-
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-TEMPLATE_DIRS = (
-    normpath(join(SITE_ROOT, 'templates')),
-)
-
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
-ROOT_URLCONF = '%s.urls' % SITE_NAME
-
-DJANGO_APPS = (
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.admin',
-)
-
-LOCAL_APPS = (
-)
-
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'filters': {
-        'require_debug_false': {
-            '()': 'django.utils.log.RequireDebugFalse'
-        }
-    },
-    'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-    }
-}
-
-WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
-
-INSTALLED_APPS += (
-    'djangobower',
-    'floppyforms',
-    'compressor',
-)
 
 # third part settings
+
+# bower
 BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'components'))
 BOWER_INSTALLED_APPS = (
+    'jquery',
     'foundation',
 )
 COMPRESS_PRECOMPILERS = (
-    ('text/x-sass',
-     ('sass -I "%s/bower_components/foundation/scss" "{infile}" '
-      '"{outfile}"') % BOWER_COMPONENTS_ROOT),
+    ('text/x-sass', 'django_libsass.SassCompiler'),
 )
+
+# grappelli
+GRAPPELLI_ADMIN_TITLE = SITE_NAME
+
+# crispy forms
+CRISPY_TEMPLATE_PACK = 'foundation'

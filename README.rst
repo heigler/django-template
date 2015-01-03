@@ -19,9 +19,7 @@ Extra Packages
 
 #. django-braces
 
-#. django-floppyforms
-
-#. coverage
+#. django-crispy-forms
 
 #. django-debug-toolbar
 
@@ -43,14 +41,14 @@ Install all global packages listed on system_requirements.txt
 
 Install all python packages (in virtualenv)::
 
-    $ pip install -r requirements/local.txt
+    $ pip install -r requirements.txt
 
 
 Do some extra setup using manage.py::
 
     $ ./manage.py migrate
 
-    $ ./manage.py bower_install
+    $ ./manage.py bower install
 
     $ ./manage.py runserver
 

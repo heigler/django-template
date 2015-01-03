@@ -1,2 +1,0 @@
--r base.txt
-coverage==3.7.1

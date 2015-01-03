@@ -1,22 +1,34 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  {% load staticfiles %}
+  {% load static %}
   {% load compress %}
   <head>
     <meta charset="utf-8">
-    <title>{% block brand %}{% endblock %}|{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %} | {% block brand %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% block description %}{% endblock %}">
     <meta name="author" content="">
 
     {% compress css %}
-    <link rel="stylesheet" href="{% static 'sass/base.sass' %}" media="screen, projection" rel="stylesheet"
-      type="text/x-sass" />
+    <link rel="stylesheet" href="{% static 'sass/base.sass' %}" rel="stylesheet" type="text/x-sass" />
     {% endcompress %}
     {% block extra_sass %}{% endblock %}
+
+    {% block js_top %}{% endblock js_top %}
+    {% block extrajs_top %} {% endblock extrajs_top %}
   </head>
 
   <body>
     <h1>Is alive!</h1>
+
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'fastclick/lib/fastclick.js' %}"></script>
+    <script src="{% static 'foundation/js/foundation.min.js' %}"></script>
+    <script>
+      $(document).foundation();
+    </script>
+
+    {% block extrajs_bottom %}{% endblock extrajs_bottom %}
+
   </body>
 </html>

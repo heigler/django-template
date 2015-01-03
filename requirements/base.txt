@@ -1,9 +1,0 @@
-Django==1.7
-MySQL-python==1.2.5
-South==0.8.4
-bpython==0.13
-django-bower==5.0.1
-django-braces==1.4.0
-django-compressor==1.4
-django-floppyforms==1.2.0
-requests==2.3.0
