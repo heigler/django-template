@@ -1,7 +1,7 @@
 django-template
 ===============
 
-Tested on Django 1.7 and Python 2.7
+Tested on Django 1.9 and Python 3.4
 
 
 Main Features
@@ -9,19 +9,15 @@ Main Features
 
 #. django-compressor
 
+#. grappelli
+
 #. zurb-foundation using Sass
 
 
 Extra Packages
 ----------------
 
-#. bpython
-
-#. django-braces
-
 #. django-crispy-forms
-
-#. django-debug-toolbar
 
 #. requests
 
@@ -41,7 +37,7 @@ Install all global packages listed on system_requirements.txt
 
 Install all python packages (in virtualenv)::
 
-    $ pip install -r requirements.txt
+    $ pip3.4 install -r requirements.txt
 
 
 Do some extra setup using manage.py::

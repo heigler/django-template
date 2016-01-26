@@ -7,13 +7,10 @@ SITE_NAME = basename(DJANGO_ROOT)
 path.append(DJANGO_ROOT)
 
 SECRET_KEY = r"{{ secret_key }}"
-
 DEBUG = True
-TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-DJANGO_APPS = (
+DJANGO_APPS = [
     'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,21 +18,19 @@ DJANGO_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-)
-
-PLUGGABLE_APPS = (
+]
+PLUGGABLE_APPS = [
     'djangobower',
     'compressor',
     'easy_thumbnails',
     'crispy_forms',
-)
-
-LOCAL_APPS = (
-)
-
+]
+LOCAL_APPS = [
+]
 INSTALLED_APPS = DJANGO_APPS + PLUGGABLE_APPS + LOCAL_APPS
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -43,33 +38,34 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+]
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'djangobower.finders.BowerFinder',
     'compressor.finders.CompressorFinder',
 )
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-TEMPLATE_DIRS = (
-    normpath(join(SITE_ROOT, 'templates')),
-)
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-)
-ROOT_URLCONF = '%s.urls' % SITE_NAME
 
-WSGI_APPLICATION = '%s.wsgi.application' % SITE_NAME
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [normpath(join(SITE_ROOT, 'templates'))],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+ROOT_URLCONF = '{0}.urls'.format(SITE_NAME)
+
+WSGI_APPLICATION = '{0}.wsgi.application'.format(SITE_NAME)
 
 DATABASES = {
     'default': {
@@ -82,12 +78,26 @@ DATABASES = {
     }
 }
 
-
 LANGUAGE_CODE = 'pt-BR'
 TIME_ZONE = 'America/Sao_Paulo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
+    },
+]
 
 MEDIA_ROOT = normpath(join(SITE_ROOT, 'media'))
 MEDIA_URL = '/media/'
@@ -103,7 +113,6 @@ STATICFILES_DIRS = (
 # bower
 BOWER_COMPONENTS_ROOT = normpath(join(SITE_ROOT, 'components'))
 BOWER_INSTALLED_APPS = (
-    'jquery',
     'foundation',
 )
 COMPRESS_PRECOMPILERS = (

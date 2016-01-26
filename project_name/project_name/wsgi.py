@@ -6,5 +6,5 @@ SITE_ROOT = dirname(dirname(abspath(__file__)))
 path.append(SITE_ROOT)
 os.environ["DJANGO_SETTINGS_MODULE"] = "{{ project_name }}.settings.prod"
 
-from django.core.wsgi import get_wsgi_application
+from django.core.wsgi import get_wsgi_application  # noqa
 application = get_wsgi_application()
